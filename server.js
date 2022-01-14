@@ -45,12 +45,12 @@ require("./app/routes/test.routes.js")(app);
 
 // simple route
 app.get("/", (req, res) => {
-  res.sendFile('index.html', {
-    root: './'
-  });
+  res.json({ message: "Welcome to Nikhil Shahu's application." });
 
   //res.sendFile(path.join(__dirname,'index.html'));
-  //res.json({ message: "Welcome to Nikhil Shahu's application." });
+  //res.sendFile('index.html', {
+   // root: './'
+ // });
    //res.redirect('./index.html');
    //res.sendFile('./index.html');
    //app.use(app.render('./index.html'));
