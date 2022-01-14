@@ -1,9 +1,8 @@
 const express = require("express");
 const bodyParser = require('body-parser');
 const mongoose = require("mongoose");
+//const cors = require("cors");
 const path = require('path');
-
-//const Joi = require('joi');
 
 // Configuring the database
 const dbConfig = require('./app/config/db.config.js');
@@ -21,44 +20,28 @@ mongoose.connect(dbConfig.url, {
     process.exit();
 });
 
-const app = express();
+ const app = express();
+// var corsOptions = {
+//   origin: "http://localhost:8081"
+// };
+
+//app.use(cors(corsOptions));
 // parse requests of content-type - application/json
 app.use(bodyParser.json());
-
-// schema used for data validation for our data document
-// const schema = Joi.object().keys({
-//   name : Joi.string().required(),
-//   img : Joi.string().required(),
-//   summary : Joi.string().required()
-// });
 
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }));
 
-require("./app/routes/test.routes.js")(app);
-
-// Setting path for public directory 
-//const static_path = path.join(__dirname, "./app/view/");
-//app.use(express.static(static_path));
-//app.use(express.urlencoded({ extended: true }));
-
-
 // simple route
 app.get("/", (req, res) => {
-  res.json({ message: "Welcome to Nikhil Shahu's application." });
-
+  //res.json({ message: "Welcome to Nikhil Shahu's application." });
   //res.sendFile(path.join(__dirname,'index.html'));
-  //res.sendFile('index.html', {
-   // root: './'
- // });
-   //res.redirect('./index.html');
-   //res.sendFile('./index.html');
-   //app.use(app.render('./index.html'));
-   //app.use(express.static(__dirname + "/public"));
-   //app.use(express.static(__dirname + "./index.html"));
-  //app.use(app.router);
+  res.sendFile('index.html', {
+   root: './app/views/'
+});
 });
 
+require("./app/routes/test.routes")(app);
 
 // set port, listen for requests
 const PORT = process.env.PORT || 2291;
