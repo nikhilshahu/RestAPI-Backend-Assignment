@@ -5,13 +5,20 @@ const mongoose = require("mongoose");
 const path = require('path');
 
 // Configuring the database
-const dbConfig = require('./app/config/db.config.js');
-const { url } = require("./app/config/db.config.js");
-const collection = "apps";
+// const dbConfig = require('./app/config/db.config.js');
+// const { url } = require("./app/config/db.config.js");
+// const collection = "apps";
 
 mongoose.Promise = global.Promise;
+const username = "nikhil201";
+const password = "foPa2WnUN9cEUMKC";
+const cluster = "cluster0.nekpy";
+const dbname = "myFirstDatabase";
 // Connecting to the database
-mongoose.connect(dbConfig.url, {
+mongoose.connect(
+    //dbConfig.url,
+    `mongodb+srv://${username}:${password}@${cluster}.mongodb.net/${dbname}?retryWrites=true&w=majority`, 
+{
     useNewUrlParser: true
 }).then(() => {
     console.log("Successfully connected to the database");    
@@ -34,11 +41,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // simple route
 app.get("/", (req, res) => {
-  //res.json({ message: "Welcome to Nikhil Shahu's application." });
+  res.json({ message: "Welcome to Nikhil Shahu's application." });
   //res.sendFile(path.join(__dirname,'index.html'));
-  res.sendFile('index.html', {
-   root: './app/views/'
-});
+  //res.sendFile('index.html', {
+   //root: './app/views/'
+//});
 });
 
 require("./app/routes/test.routes")(app);
