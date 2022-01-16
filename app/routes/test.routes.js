@@ -5,7 +5,7 @@ module.exports = (app) => {
    
     app.post("/create", App.create);
   
-    app.get("/getAll", App.Read);
+    app.get("/get", App.Read);
     
     app.get("/name/:ObjectId", App.ReadOne);
     app.get("/img/:ObjectId", App.ReadOne);
@@ -13,9 +13,9 @@ module.exports = (app) => {
     
   
     app.put("/update/:ObjectId", App.update);
-    //app.put("/name/:ObjectId", App.update)
-    //app.put("/img/:ObjectId", App.update);
-    //app.put("/summary/:ObjectId", App.update);
+    app.put("/name/:ObjectId", App.update)
+    app.put("/img/:ObjectId", App.update);
+    app.put("/summary/:ObjectId", App.update);
   
     app.delete("/delete/:ObjectId", App.delete);
     //app.delete("/name/:ObjectId", App.delete);
